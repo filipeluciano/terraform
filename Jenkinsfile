@@ -3,7 +3,7 @@
 node {
 
   env.WORKSPACE = 'default'
-  env.TERRAFORM_CMD = "docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY --rm --network host -w /app -v `pwd`:/app hashicorp/terraform:light"
+  env.TERRAFORM_CMD = "docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY --rm --network host -w /app -v $PWD:/app hashicorp/terraform:light"
   env.STATE = 'BUILD'
 
   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'filipe-recursiva']]) {
