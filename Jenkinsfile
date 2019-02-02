@@ -14,42 +14,42 @@ node {
     if (env.STATE == 'BUILD') {
 
       stage ('Pull latest light terraform image') {
-        ansiColor('xterm') {
+
           sh 'docker pull hashicorp/terraform:light'
-        }
+
       }
 
       stage ('Terraform init') {
-        ansiColor('xterm') {
+
           sh '${TERRAFORM_CMD} init'
-        }
+
       }
 
       stage ("Terraform switch workspace to ${env.ENVIRONMENT}") {
-        ansiColor('xterm') {
+
           sh "${TERRAFORM_CMD} workspace select ${env.ENVIRONMENT}"
-        }
+
       }
 
       stage ('Terraform Plan') {
-        ansiColor('xterm') {
+
           sh "${TERRAFORM_CMD} plan -out=create.tfplan  -var-file=${env.ENVIRONMENT}_secrets.tfvars"
-        }
+
       }
 
       // Optional wait for approval
       input 'Deploy stack?'
 
       stage ('Terraform Apply') {
-        ansiColor('xterm') {
+
           sh '${TERRAFORM_CMD} apply create.tfplan'
-        }
+
       }
 
       stage ('Post Run Tests') {
-        ansiColor('xterm') {
+
           sh '${TERRAFORM_CMD} show'
-        }
+        
       }
 
   cleanWs()
