@@ -26,12 +26,6 @@ node {
 
       }
 
-      stage ("Terraform switch workspace to ${env.ENVIRONMENT}") {
-
-          sh "${TERRAFORM_CMD} workspace select ${env.ENVIRONMENT}"
-
-      }
-
       stage ('Terraform Plan') {
 
           sh "${TERRAFORM_CMD} plan -out=create.tfplan  -var-file=${env.ENVIRONMENT}_secrets.tfvars"
