@@ -31,7 +31,6 @@ node {
 
       }
 
-      // Optional wait for approval
       input 'Deploy stack?'
 
       stage ('Terraform Apply') {
