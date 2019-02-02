@@ -13,12 +13,6 @@ node {
 
     if (env.STATE == 'BUILD') {
 
-      stage ('Decrypt rds_password') {
-        ansiColor('xterm') {
-          sh "cd ${env.ENVIRONMENT}; ansible-vault decrypt ${env.ENVIRONMENT}_secret.tfvars.vault --vault-password-file ~/vault_pass.txt --output ${env.ENVIRONMENT}_secrets.tfvars"
-        }
-      }
-
       stage ('Pull latest light terraform image') {
         ansiColor('xterm') {
           sh 'docker pull hashicorp/terraform:light'
