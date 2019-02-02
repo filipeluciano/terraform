@@ -28,7 +28,7 @@ node {
 
       stage ('Terraform Plan') {
 
-          sh "${TERRAFORM_CMD} plan -out=create.tfplan  -var-file=${env.ENVIRONMENT}_secrets.tfvars"
+          sh "${TERRAFORM_CMD} plan -out=create.tfplan"
 
       }
 
