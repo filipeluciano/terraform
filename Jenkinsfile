@@ -4,7 +4,7 @@ node {
 
   env.TERRAFORM_CMD = "docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY --rm --network host -w /app -v ${WORKSPACE}/${env.ENVIRONMENT}:/app hashicorp/terraform:light"
 
-  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'Deploy Credentials']]) {
+  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'filipe-recursiva']]) {
 
   stage ('Checkout') {
     checkout scm
