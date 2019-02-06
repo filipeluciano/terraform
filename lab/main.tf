@@ -15,7 +15,7 @@ resource "aws_db_parameter_group" "aurora_db_parameter_group" {
 
   parameter {
     name = "max_connections"
-    value = "50"
+    value = "55"
   }
 
   parameter {
